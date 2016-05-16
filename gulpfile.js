@@ -19,6 +19,7 @@ var runSequence  = require('run-sequence');
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
+var sftp         = require('gulp-sftp');
 
 // See https://github.com/austinpray/asset-builder
 var manifest = require('asset-builder')('./assets/manifest.json');
@@ -280,6 +281,37 @@ gulp.task('wiredep', function() {
     }))
     .pipe(gulp.dest(path.source + 'styles'));
 });
+
+// ### Deploy
+gulp.task('deploy-staging', ['build'], function(){
+  var conn = sftp( {
+    host: '',
+    port: 22,
+    auth: 'keyMain',
+    remotePath: '/full/path/wp-content/themes/theme_name'
+  } );
+
+  var globs = [
+    './**',
+    '!./bower_components{,/**}',  // bower
+    '!./node_modules{,/**}',      // npm
+    '!./assets{,/**}',            // Sage assets
+    '!./gravity-forms-json{,/**}',// WP plugin config
+    '!./cptui-json{,/**}',        // WP plugin config
+    '!./acf-json{,/**}',          // WP plugin config
+    '!./*.sublime-project{,/**}', // Sublime editor config
+    '!./*.sublime-workspace{,/**}',// Sublime editor config
+    '!./sftp-config.*{,/**}',     // Sublime editor config
+    '!./.htaccess{,/**}',
+    '!./.ftppass{,/**}',          // S/FTP config
+  ];
+
+  return gulp.src( globs )
+    .pipe( conn );
+});
+
+
+
 
 // ### Gulp
 // `gulp` - Run a complete build. To compile for production run `gulp --production`.
