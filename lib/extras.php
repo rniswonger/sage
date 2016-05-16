@@ -5,6 +5,12 @@ namespace Roots\Sage\Extras;
 use Roots\Sage\Setup;
 
 /**
+ * Bootstrap nav walker
+ */
+// require_once('wp-bootstrap-navwalker-master/wp_bootstrap_navwalker.php');
+
+
+/**
  * Add <body> classes
  */
 function body_class($classes) {
