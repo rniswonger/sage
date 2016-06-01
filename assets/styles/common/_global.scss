@@ -1,1 +1,13 @@
+p {
+  word-break: break-word;
+}
 
+a,
+a:hover {
+  text-decoration: none;
+  transition: color 250ms;
+}
+
+img {
+  max-width: 100%;
+}
