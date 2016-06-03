@@ -283,6 +283,14 @@ gulp.task('wiredep', function() {
 });
 
 // ### Deploy
+/* requires a file .ftppass in the theme root with contents
+  {
+    "keyMain": {
+      "user": "username",
+      "pass": "******"
+    }
+  }
+*/
 gulp.task('deploy-staging', ['build'], function(){
   var conn = sftp( {
     host: '',
@@ -303,7 +311,8 @@ gulp.task('deploy-staging', ['build'], function(){
     '!./*.sublime-workspace{,/**}',// Sublime editor config
     '!./sftp-config.*{,/**}',     // Sublime editor config
     '!./.htaccess{,/**}',
-    '!./.ftppass{,/**}',          // S/FTP config
+    '!./.ftppass{,/**}',          // SFTP config
+    '!./ftppass.json{,/**}',      // FTP config
   ];
 
   return gulp.src( globs )
