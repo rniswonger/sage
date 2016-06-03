@@ -25,8 +25,15 @@ $container-sm                       : (720px + $grid-gutter-width);
 $container-md                       : (940px + $grid-gutter-width);
 $container-lg                       : (1140px + $grid-gutter-width);
 
+//== Scaffolding
 
-// Navbar
+$body-bg                            : #fff;
+// $text-color                         : $gray-dark;
+$link-color                         : $brand-primary;
+$link-hover-color                   : darken($link-color, 15%);
+$link-hover-decoration              : underline;
+
+//== Navbar
 
 // Basics of a navbar
 $navbar-height                      : 50px;
@@ -60,7 +67,22 @@ $navbar-default-toggle-icon-bar-bg  : #888;
 $navbar-default-toggle-border-color : #ddd;
 
 
-// Text
+//== Dropdown
+
+$dropdown-bg:                    fade-out($black, .1);
+$dropdown-border:                rgba(0,0,0,.15) !default;
+$dropdown-fallback-border:       #ccc !default;
+$dropdown-divider-bg:            #e5e5e5 !default;
+// $dropdown-link-color:            $gray-dark !default;
+// $dropdown-link-hover-color:      darken($gray-dark, 5%) !default;
+$dropdown-link-hover-bg:         #f5f5f5 !default;
+// $dropdown-link-active-color:     $component-active-color !default;
+// $dropdown-link-active-bg:        $component-active-bg !default;
+// $dropdown-link-disabled-color:   $gray-light !default;
+// $dropdown-header-color:          $gray-light !default;
+
+
+//== Text
 // $font-size-base                  : 14px;
 // $font-size-h1                    : floor(($font-size-base * 3)); // ~89px
 // $font-size-h2                    : floor(($font-size-base * 2.29)); // ~32px
