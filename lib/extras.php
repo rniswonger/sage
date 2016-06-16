@@ -80,3 +80,30 @@ function cptui_local_json( $data = array() ) {
 }
 add_action( 'cptui_after_update_post_type', __NAMESPACE__ . '\\cptui_local_json' );
 add_action( 'cptui_after_update_taxonomy', __NAMESPACE__ . '\\cptui_local_json' );
+
+
+/**
+ * TinyMCE: Callback function to insert 'styleselect' into the $buttons array
+ */
+function custom_mce_buttons2( $buttons ) {
+  array_unshift( $buttons, 'styleselect' );
+  return $buttons;
+}
+add_filter( 'mce_buttons_2', __NAMESPACE__ . '\\custom_mce_buttons2' );
+
+
+/**
+ * Callback function to filter the MCE settings
+ */
+function custom_mce_formats( $init_array ) {
+  $style_formats = array(
+    array(
+      'title'    => 'Large',
+      'selector' => 'p',
+      'classes'  => 'large',
+    ),
+  );
+  $init_array['style_formats'] = json_encode( $style_formats );
+  return $init_array;
+}
+add_filter( 'tiny_mce_before_init', __NAMESPACE__ . '\\custom_mce_formats' );
