@@ -107,3 +107,21 @@ function custom_mce_formats( $init_array ) {
   return $init_array;
 }
 add_filter( 'tiny_mce_before_init', __NAMESPACE__ . '\\custom_mce_formats' );
+
+/**
+ *
+ * Remove line breaks and paragraphs around shortcodes
+ * https://gist.github.com/bitfade/4555047
+ */
+function clean_shortcodes($content) {
+  // array of custom shortcodes requiring the fix
+  $block = join( "|", array("shortcode1","shortcode2") );
+
+  // opening tag
+  $rep = preg_replace("/(<p>)?\[($block)(\s[^\]]+)?\](<\/p>|<br \/>)?/","[$2$3]",$content);
+
+  // closing tag
+  $rep = preg_replace("/(<p>)?\[\/($block)](<\/p>|<br \/>)?/","[/$2]",$rep);
+  return $rep;
+}
+add_filter('the_content', __NAMESPACE__ . '\\clean_shortcodes');
