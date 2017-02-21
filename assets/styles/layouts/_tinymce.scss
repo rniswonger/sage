@@ -1,4 +1,24 @@
 body#tinymce {
   margin: 12px !important;
   height: auto !important; // prevent odd behavior when HTML height is 100%
+
+  h1 {
+    @extend .h1;
+  }
+
+  h2 {
+    @extend .h2;
+  }
+
+  h3 {
+    @extend .h3;
+  }
+
+  h4 {
+    @extend .h4;
+  }
+
+  p {
+    @extend .p;
+  }
 }

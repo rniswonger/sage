@@ -1,3 +1,22 @@
+html {
+  box-sizing: border-box;
+
+  * {
+    box-sizing: inherit;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $font-family-sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 p {
   word-break: break-word;
 }
@@ -5,71 +24,24 @@ p {
 a,
 a:hover {
   text-decoration: none;
-  transition: color 250ms;
+  transition: color 150ms;
 }
 
-img {
-  max-width: 100%;
+/**
+ * Type
+ */
+
+.h1 {
 }
 
-
-//
-//  Function to create an optimized svg url
-//  http://codepen.io/jakob-e/pen/doMoML
-//
-@function svg-url($svg){
-  //  Chunk up string in order to avoid "stack level too deep" error
-  $encoded:'';
-  $slice: 2000;
-  $index: 0;
-  $loops: ceil(str-length($svg)/$slice);
-  @for $i from 1 through $loops {
-    $chunk: str-slice($svg, $index, $index + $slice - 1);
-    //
-    //   Encode (may need a few extra replacements)
-    //
-    $chunk: str-replace($chunk,'"','\'');
-    $chunk: str-replace($chunk,'<','%3C');
-    $chunk: str-replace($chunk,'>','%3E');
-    $chunk: str-replace($chunk,'&','%26');
-    $chunk: str-replace($chunk,'#','%23');
-    $encoded: #{$encoded}#{$chunk};
-    $index: $index + $slice;
-  }
-  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+.h2 {
 }
 
-//  Helper function to replace characters in a string
-@function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
-  @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace +
-    str-replace(str-slice($string, $index +
-      str-length($search)), $search, $replace);
-  }
-  @return $string;
+.h3 {
 }
 
-// fluidly resize type
-@mixin fluid-type($font-min, $font-max, $screen-min, $screen-max) {
-  font-size: #{$font-min}px;
-
-  @media only screen and (min-width: #{$screen-min}px) {
-    font-size: calc( #{$font-min}px + #{($font-max - $font-min)} * (100vw - #{$screen-min}px) / (#{$screen-max} - #{$screen-min}) );
-  }
-
-  @media only screen and (min-width: #{$screen-max}px) {
-    font-size: #{$font-max}px;;
-  }
+.h4 {
 }
 
-%sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
+.p {
 }
